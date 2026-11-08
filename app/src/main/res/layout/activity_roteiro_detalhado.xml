@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SalCity: tela de detalhes, preservando os IDs e os recursos gráficos originais. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4F6F8">
+
+    <!-- Conteúdo rolável: o mapa e as paradas continuam acessíveis. -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:clipToPadding="false">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="235dp">
+                <ImageView
+                    android:id="@+id/imgCapaRoteiro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/roteiro_capa_pelourinho"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Ilustração do centro histórico de Salvador" />
+                <ImageButton
+                    android:id="@+id/btnVoltarDetalhe"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="top|start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_detalhe_favorito"
+                    android:src="@drawable/ic_detalhe_voltar"
+                    android:contentDescription="Voltar" />
+                <ImageButton
+                    android:id="@+id/btnFavoritoDetalhe"
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="top|end"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="16dp"
+                    android:padding="12dp"
+                    android:background="@drawable/bg_detalhe_favorito"
+                    android:src="@drawable/ic_detalhe_coracao"
+                    android:contentDescription="Favoritar roteiro" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:background="@drawable/bg_detalhe_cartao">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/txtTituloDetalhe"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Salvador Essencial"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="#07336E" />
+                    <ImageButton
+                        android:id="@+id/btnNotificacaoDetalhe"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_detalhe_sino"
+                        android:contentDescription="Notificações do roteiro"
+                        android:padding="8dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="22dp">
+                    <TextView android:id="@+id/txtDuracaoDetalhe"
+                        style="@style/SalCityDetailMeta" android:text="◷  1 dia" />
+                    <TextView android:id="@+id/txtLocaisDetalhe"
+                        style="@style/SalCityDetailMeta" android:text="⌖  6 paradas" />
+                    <TextView android:id="@+id/txtTempoDetalhe"
+                        style="@style/SalCityDetailMeta" android:text="◷  ~ 8h" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+                    <TextView android:id="@+id/abaRoteiro"
+                        style="@style/SalCityDetailTab" android:text="Roteiro" />
+                    <TextView android:id="@+id/abaMapa"
+                        style="@style/SalCityDetailTab" android:text="Mapa" />
+                    <TextView android:id="@+id/abaDetalhes"
+                        style="@style/SalCityDetailTab" android:text="Detalhes" />
+                </LinearLayout>
+                <View
+                    android:id="@+id/linhaAba"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="#E5ECF2" />
+                <LinearLayout
+                    android:id="@+id/conteudoRoteiro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="12dp" />
+                <FrameLayout
+                    android:id="@+id/conteudoMapa"
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="16dp" />
+                <TextView
+                    android:id="@+id/conteudoDetalhes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:padding="16dp"
+                    android:textColor="#345574"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="6dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Barra fixa de ações. Ambos os botões permanecem visíveis ao rolar. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp"
+        android:background="#FFFFFF">
+        <!-- NOVO: salva o roteiro sugerido na lista local Meus Roteiros. -->
+        <Button
+            android:id="@+id/btnSalvarRoteiro"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Salvar roteiro"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="#07336E"
+            android:background="@drawable/bg_detalhe_botao"
+            android:backgroundTint="@null" />
+        <!-- EXISTENTE: abre AdicionarRoteiroActivity, sem alterar sua função. -->
+        <Button
+            android:id="@+id/btnAdicionarRoteiro"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="10dp"
+            android:text="Adicionar ao meu roteiro"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="#07336E"
+            android:background="@drawable/bg_detalhe_botao"
+            android:backgroundTint="@null" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Fundo do botão de criação de roteiros.
+
+    Formato circular e cor amarela.
+-->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid android:color="@color/home_yellow"/>
+
+    <stroke
+        android:width="3dp"
+        android:color="@color/home_white"/>
+
+    <corners android:radius="100dp"/>
+
+</shape>

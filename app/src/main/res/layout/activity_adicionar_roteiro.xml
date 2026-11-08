@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fillViewport="true" android:background="#FFFFFF">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:paddingStart="18dp" android:paddingEnd="18dp"
+        android:paddingTop="20dp" android:paddingBottom="32dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center_vertical">
+            <TextView android:id="@+id/btnVoltarAdicionar" android:layout_width="44dp" android:layout_height="match_parent"
+                android:text="‹" android:textSize="40sp" android:textColor="#062A58" android:gravity="center"
+                android:contentDescription="Voltar" android:clickable="true" android:focusable="true" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginStart="8dp" android:text="Adicionar ao roteiro" android:textColor="#062A58"
+                android:textSize="25sp" android:textStyle="bold" />
+        </LinearLayout>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="24dp" android:text="Roteiro atual" android:textSize="20sp"
+            android:textStyle="bold" android:textColor="#062A58" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:padding="10dp" android:gravity="center_vertical"
+            android:background="@drawable/bg_adicionar_borda">
+            <ImageView android:layout_width="58dp" android:layout_height="58dp"
+                android:src="@drawable/roteiro_pelourinho" android:scaleType="centerCrop"
+                android:contentDescription="Fotografia do roteiro Salvador Essencial" />
+            <Spinner android:id="@+id/spinnerRoteiroAdicionar" android:layout_width="0dp"
+                android:layout_height="64dp" android:layout_weight="1"
+                android:layout_marginStart="8dp" android:contentDescription="Selecionar roteiro" />
+        </LinearLayout>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="26dp" android:text="O que deseja adicionar?" android:textSize="20sp"
+            android:textStyle="bold" android:textColor="#062A58" />
+        <LinearLayout android:id="@+id/categoriasLinha1" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="8dp" />
+        <LinearLayout android:id="@+id/categoriasLinha2" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:orientation="horizontal" />
+        <EditText android:id="@+id/campoBuscaAdicionar" android:layout_width="match_parent"
+            android:layout_height="58dp" android:layout_marginTop="20dp"
+            android:background="@drawable/bg_adicionar_borda" android:paddingStart="16dp"
+            android:paddingEnd="12dp" android:hint="Buscar locais, restaurantes, eventos..."
+            android:inputType="text" android:singleLine="true" android:textColor="#062A58"
+            android:textColorHint="#6D8BA9" android:textSize="15sp" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="24dp" android:layout_marginBottom="6dp"
+            android:text="Resultados próximos" android:textSize="20sp" android:textStyle="bold"
+            android:textColor="#062A58" />
+        <LinearLayout android:id="@+id/listaResultadosAdicionar"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </LinearLayout>
+</ScrollView>

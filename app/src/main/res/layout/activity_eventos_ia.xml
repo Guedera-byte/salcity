@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="#07336E">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="56dp"
+        android:orientation="horizontal" android:gravity="center_vertical" android:paddingHorizontal="12dp">
+        <ImageButton android:id="@+id/btnVoltarEventosIa" android:layout_width="48dp"
+            android:layout_height="48dp" android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_filtro_back" android:contentDescription="Voltar" android:tint="#FFFFFF" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Eventos e roteiro IA" android:textColor="#FFFFFF" android:textSize="21sp" android:textStyle="bold" />
+    </LinearLayout>
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="18dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Quando você estará em Salvador?" android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" />
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:layout_marginTop="8dp">
+                <Button android:id="@+id/btnDataInicioIa" android:layout_width="0dp" android:layout_height="52dp"
+                    android:layout_weight="1" android:text="Chegada" android:textAllCaps="false" />
+                <Button android:id="@+id/btnDataFimIa" android:layout_width="0dp" android:layout_height="52dp"
+                    android:layout_weight="1" android:layout_marginStart="8dp" android:text="Saída" android:textAllCaps="false" />
+            </LinearLayout>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="18dp" android:text="Que tipos de turismo você prefere?"
+                android:textColor="#FFFFFF" android:textSize="18sp" android:textStyle="bold" />
+            <LinearLayout android:id="@+id/containerTemasIa" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="4dp" />
+            <Button android:id="@+id/btnBuscarEventosIa" android:layout_width="match_parent"
+                android:layout_height="56dp" android:layout_marginTop="16dp" android:text="Buscar eventos"
+                android:textAllCaps="false" android:textStyle="bold" />
+            <TextView android:id="@+id/txtEstadoBuscaIa" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:visibility="gone" android:layout_marginTop="12dp"
+                android:textColor="#FFFFFF" android:textSize="15sp" />
+            <LinearLayout android:id="@+id/containerListaEventosIa" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="8dp" />
+            <Button android:id="@+id/btnGerarRoteiroIa" android:layout_width="match_parent"
+                android:layout_height="56dp" android:layout_marginTop="14dp" android:text="Gerar roteiro com minhas escolhas"
+                android:textAllCaps="false" android:textStyle="bold" android:visibility="gone" />
+            <TextView android:id="@+id/txtResultadoRoteiroIa" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:visibility="gone" android:layout_marginTop="16dp"
+                android:padding="16dp" android:background="#FFFFFF" android:textColor="#07336E"
+                android:textSize="16sp" android:lineSpacingExtra="3dp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

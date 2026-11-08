@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Perfil do usuário — visual SalCity, sem dependências adicionais. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F4F6F8">
+
+    <!-- Cabeçalho azul com logo original e botão voltar. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#07336E"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/btnVoltarPerfil"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="‹"
+            android:textSize="34sp"
+            android:textColor="#FFFFFF"
+            android:contentDescription="Voltar"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Meu perfil"
+            android:textColor="#FFFFFF"
+            android:textSize="23sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="72dp"
+            android:layout_height="56dp"
+            android:src="@drawable/logo_salcity"
+            android:scaleType="fitCenter"
+            android:contentDescription="Logo SalCity" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Avatar e identificação. -->
+            <TextView
+                android:id="@+id/txtAvatarPerfil"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:background="@drawable/bg_perfil_avatar"
+                android:text="US"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                android:textColor="#07336E" />
+
+            <TextView
+                android:id="@+id/txtNomePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:text="Usuário SalCity"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#07336E" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="Minha conta"
+                android:textColor="#50718D"
+                android:textSize="15sp" />
+
+            <!-- Informações pessoais. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:padding="18dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_perfil_cartao">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="INFORMAÇÕES DO USUÁRIO"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="#07336E" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:text="E-mail"
+                    android:textSize="13sp"
+                    android:textColor="#50718D" />
+
+                <TextView
+                    android:id="@+id/txtEmailPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="E-mail não disponível"
+                    android:textSize="16sp"
+                    android:textColor="#07336E" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="#E4EAF0" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Telefone"
+                    android:textSize="13sp"
+                    android:textColor="#50718D" />
+
+                <TextView
+                    android:id="@+id/txtTelefonePerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Não informado"
+                    android:textSize="16sp"
+                    android:textColor="#07336E" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnMeusRoteirosPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="22dp"
+                android:text="Meus roteiros  ›"
+                android:textAllCaps="false"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="#07336E"
+                android:background="@drawable/bg_perfil_cartao"
+                android:backgroundTint="@null" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Ação fixa de saída, acessível sem rolar. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/btnSairPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Sair da conta"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textSize="17sp"
+            android:textColor="#07336E"
+            android:background="@drawable/bg_perfil_amarelo"
+            android:backgroundTint="@null" />
+    </LinearLayout>
+</LinearLayout>

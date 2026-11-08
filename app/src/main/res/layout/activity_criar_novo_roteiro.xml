@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#FFFFFF">
+    <ImageView android:layout_width="235dp" android:layout_height="205dp" android:layout_gravity="top|end" android:src="@drawable/bg_criar_canto_superior" android:contentDescription="@null" android:importantForAccessibility="no"/>
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:clipToPadding="false" android:scrollbars="none">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingStart="20dp" android:paddingEnd="20dp" android:paddingTop="40dp" android:paddingBottom="96dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="22dp">
+                <ImageButton android:id="@+id/btnVoltarCriar" android:layout_width="48dp" android:layout_height="48dp" android:padding="12dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_criar_voltar" android:contentDescription="@string/sc_criar_voltar"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="@string/sc_criar_titulo" android:textColor="#083572" android:textStyle="bold" android:textSize="26sp"/>
+            </LinearLayout>
+            <TextView style="@style/SalCityCriarRotulo" android:text="@string/sc_criar_nome"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="6dp" android:layout_marginBottom="18dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="14dp" android:paddingEnd="12dp" android:background="@drawable/bg_criar_campo">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_criar_lapis" android:contentDescription="@null"/>
+                <EditText android:id="@+id/edtNomeRoteiro" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="12dp" android:background="@android:color/transparent" android:singleLine="true" android:inputType="textCapSentences" android:importantForAutofill="no" android:textColor="#083572" android:textColorHint="#52658C" android:textSize="16sp" android:hint="@string/sc_criar_nome_hint"/>
+            </LinearLayout>
+            <TextView style="@style/SalCityCriarRotulo" android:text="@string/sc_criar_descricao"/>
+            <FrameLayout android:layout_width="match_parent" android:layout_height="124dp" android:layout_marginTop="6dp" android:layout_marginBottom="18dp" android:background="@drawable/bg_criar_campo">
+                <ImageView android:layout_width="24dp" android:layout_height="24dp" android:layout_marginStart="14dp" android:layout_marginTop="15dp" android:src="@drawable/ic_criar_descricao" android:contentDescription="@null"/>
+                <EditText android:id="@+id/edtDescricaoRoteiro" android:layout_width="match_parent" android:layout_height="92dp" android:layout_marginStart="49dp" android:layout_marginEnd="12dp" android:layout_marginTop="8dp" android:gravity="top" android:background="@android:color/transparent" android:inputType="textCapSentences|textMultiLine" android:importantForAutofill="no" android:maxLength="300" android:textColor="#083572" android:textColorHint="#52658C" android:textSize="16sp" android:hint="@string/sc_criar_descricao_hint"/>
+                <TextView android:id="@+id/txtContadorDescricao" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|end" android:layout_marginEnd="12dp" android:layout_marginBottom="8dp" android:text="@string/sc_criar_contador_inicial" android:textSize="12sp" android:textColor="#52658C"/>
+            </FrameLayout>
+            <TextView style="@style/SalCityCriarRotulo" android:text="@string/sc_criar_dias" android:layout_marginBottom="10dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="18dp">
+                <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="6dp">
+                    <TextView style="@style/SalCityCriarRotuloMenor" android:text="@string/sc_criar_inicio"/>
+                    <LinearLayout android:id="@+id/btnDataInicio" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="5dp" android:background="@drawable/bg_criar_campo" android:gravity="center_vertical" android:paddingStart="9dp" android:orientation="horizontal" android:clickable="true" android:focusable="true" android:contentDescription="@string/sc_criar_escolher_inicio">
+                        <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_criar_calendario" android:contentDescription="@null"/>
+                        <TextView android:id="@+id/txtDataInicio" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="6dp" android:text="@string/sc_criar_data_placeholder" android:textColor="#52658C" android:textSize="13sp"/>
+                    </LinearLayout></LinearLayout><LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginStart="6dp">
+                <TextView style="@style/SalCityCriarRotuloMenor" android:text="@string/sc_criar_fim"/>
+                <LinearLayout android:id="@+id/btnDataFim" android:layout_width="match_parent" android:layout_height="56dp" android:layout_marginTop="5dp" android:background="@drawable/bg_criar_campo" android:gravity="center_vertical" android:paddingStart="9dp" android:orientation="horizontal" android:clickable="true" android:focusable="true" android:contentDescription="@string/sc_criar_escolher_fim">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_criar_calendario" android:contentDescription="@null"/>
+                    <TextView android:id="@+id/txtDataFim" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="6dp" android:text="@string/sc_criar_data_placeholder" android:textColor="#52658C" android:textSize="13sp"/>
+                </LinearLayout></LinearLayout></LinearLayout>
+            <TextView style="@style/SalCityCriarRotulo" android:text="@string/sc_criar_tags" android:layout_marginBottom="10dp"/>
+            <LinearLayout android:id="@+id/containerTagsCriar" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginBottom="20dp"/>
+            <TextView style="@style/SalCityCriarRotulo" android:text="@string/sc_criar_restaurantes" android:layout_marginBottom="8dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="64dp" android:layout_marginBottom="18dp" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="12dp" android:paddingEnd="12dp" android:background="@drawable/bg_sc_criar_restaurante">
+                <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_filtro_food" android:contentDescription="@null"/>
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:text="@string/sc_criar_incluir_restaurantes" android:textColor="#083572" android:textSize="14sp"/>
+                <androidx.appcompat.widget.SwitchCompat android:id="@+id/switchRestaurantesCriar" android:layout_width="wrap_content" android:layout_height="48dp" android:minWidth="48dp" android:checked="true" android:showText="false" android:contentDescription="@string/sc_criar_incluir_restaurantes" app:thumbTint="#FFFFFF" app:trackTint="#FFBE08"/>
+            </LinearLayout>
+            <TextView style="@style/SalCityCriarRotulo" android:text="@string/sc_criar_localizacao" android:layout_marginBottom="8dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="18dp">
+                <LinearLayout android:layout_width="0dp" android:layout_weight="1.25" android:layout_height="56dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="@drawable/bg_criar_campo" android:paddingStart="9dp" android:paddingEnd="4dp">
+                    <ImageView android:layout_width="22dp" android:layout_height="22dp" android:src="@drawable/ic_filtro_location" android:contentDescription="@null"/>
+                    <Spinner android:id="@+id/spinnerBairroCriar" android:layout_width="0dp" android:layout_weight="1" android:layout_height="match_parent" android:layout_marginStart="4dp" android:contentDescription="@string/sc_criar_escolher_bairro"/>
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnUsarLocalizacaoCriar" android:layout_width="0dp" android:layout_weight="1" android:layout_height="56dp" android:layout_marginStart="8dp" android:background="@drawable/bg_sc_criar_transporte_off" android:text="@string/sc_criar_usar_localizacao" android:textColor="#083572" android:textAllCaps="false" android:textSize="12sp" android:padding="4dp"/>
+            </LinearLayout>
+            <TextView style="@style/SalCityCriarRotulo" android:text="@string/sc_criar_transporte" android:layout_marginBottom="10dp"/>
+            <LinearLayout android:id="@+id/grupoTransportesCriar" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="20dp"/>
+            <TextView style="@style/SalCityCriarRotulo" android:text="@string/sc_criar_orcamento"/>
+            <TextView android:id="@+id/txtOrcamentoAtual" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:background="@drawable/bg_criar_balao" android:padding="10dp" android:text="@string/sc_criar_orcamento_inicial" android:textColor="#FFFFFF" android:textSize="16sp"/>
+            <SeekBar android:id="@+id/seekOrcamentoCriar" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:max="500" android:progress="0" android:progressTint="#0789F8" android:thumbTint="#0789F8" android:progressBackgroundTint="#D5E2F8" android:contentDescription="@string/sc_criar_orcamento"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="28dp">
+                <TextView android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="@string/sc_criar_orcamento_inicial" android:textSize="14sp" android:textColor="#083572"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/sc_criar_orcamento_maximo" android:textSize="14sp" android:textColor="#083572"/>
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton android:id="@+id/btnCriarRoteiro" android:layout_width="match_parent" android:layout_height="66dp" android:background="@drawable/bg_criar_amarelo" android:backgroundTint="@null" app:backgroundTint="@null" android:text="@string/sc_criar_botao" android:textAllCaps="false" android:textStyle="bold" android:textColor="#07336E" android:textSize="23sp" android:elevation="0dp"/>
+        </LinearLayout></ScrollView>
+    <ImageView android:layout_width="match_parent" android:layout_height="64dp" android:layout_gravity="bottom" android:src="@drawable/bg_criar_ondas_inferiores" android:scaleType="fitXY" android:contentDescription="@null" android:importantForAccessibility="no" android:clickable="false"/>
+</FrameLayout>

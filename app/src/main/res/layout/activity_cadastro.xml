@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    =====================================================
+    PROJETO: SALCITY
+    ARQUIVO: activity_cadastro.xml
+    TELA: CADASTRO
+
+    OBJETIVO:
+    Permitir que novos usuários informem seus dados
+    para criar uma conta no aplicativo SalCity.
+
+    COMPONENTES:
+    1. Botão Voltar
+    2. Logo
+    3. Título e descrição
+    4. Nome completo
+    5. E-mail
+    6. Senha
+    7. Confirmar senha
+    8. Caixa de aceitação dos termos
+    9. Links dos documentos legais
+    10. Botão Cadastrar
+    11. Link Entrar
+
+    OBSERVAÇÃO:
+    A criação real de contas será integrada
+    posteriormente.
+    =====================================================
+-->
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollCadastro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/login_branco"
+    android:clipToPadding="false">
+
+    <!--
+        CONTÊINER PRINCIPAL
+
+        Organiza os elementos verticalmente.
+        Permite que a tela acompanhe a rolagem.
+    -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp">
+
+        <!--
+            BOTÃO VOLTAR
+
+            ID: btnVoltarCadastro
+
+            Retorna à tela de login.
+        -->
+
+        <TextView
+            android:id="@+id/btnVoltarCadastro"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="‹"
+            android:textSize="40sp"
+            android:textColor="@color/login_azul_escuro"
+            android:contentDescription="Voltar para o login"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!--
+            LOGO SALCITY
+
+            ID: imgLogoCadastro
+
+            Utiliza a mesma imagem do login.
+            Preserva a identidade visual.
+        -->
+
+        <ImageView
+            android:id="@+id/imgLogoCadastro"
+            android:layout_width="240dp"
+            android:layout_height="190dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/logo_salcity"
+            android:scaleType="fitCenter"
+            android:contentDescription="Logo do SalCity" />
+
+        <!--
+            TÍTULO PRINCIPAL
+        -->
+
+        <TextView
+            android:id="@+id/txtTituloCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="Crie sua conta"
+            android:textColor="@color/login_azul_escuro"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <!--
+            DESCRIÇÃO
+        -->
+
+        <TextView
+            android:id="@+id/txtDescricaoCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Vem fazer parte da nossa comunidade de exploradores!"
+            android:textColor="@color/login_texto_secundario"
+            android:textSize="17sp"
+            android:lineSpacingExtra="3dp" />
+
+        <!--
+            CAMPO: NOME COMPLETO
+
+            ID: edtNomeCadastro
+
+            Permite informar o nome completo.
+            A primeira letra das palavras pode
+            ser capitalizada pelo teclado.
+        -->
+
+        <EditText
+            android:id="@+id/edtNomeCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/bg_campo_login"
+            android:hint="Nome completo"
+            android:inputType="textPersonName|textCapWords"
+            android:singleLine="true"
+            android:paddingStart="20dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/login_azul_escuro"
+            android:textColorHint="@color/login_texto_secundario"
+            android:textSize="17sp"
+            android:autofillHints="name" />
+
+        <!--
+            CAMPO: E-MAIL
+
+            ID: edtEmailCadastro
+
+            Abre um teclado apropriado para
+            digitação de endereços de e-mail.
+        -->
+
+        <EditText
+            android:id="@+id/edtEmailCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_campo_login"
+            android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:paddingStart="20dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/login_azul_escuro"
+            android:textColorHint="@color/login_texto_secundario"
+            android:textSize="17sp"
+            android:autofillHints="emailAddress" />
+
+        <!--
+            CONTÊINER: SENHA
+
+            Agrupa o EditText e o controle
+            de visibilidade dos caracteres.
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_campo_login">
+
+            <!--
+                CAMPO: SENHA
+
+                ID: edtSenhaCadastro
+
+                Os caracteres são ocultados
+                automaticamente pelo Android.
+            -->
+
+            <EditText
+                android:id="@+id/edtSenhaCadastro"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"
+                android:background="@android:color/transparent"
+                android:hint="Senha"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/login_azul_escuro"
+                android:textColorHint="@color/login_texto_secundario"
+                android:textSize="17sp"
+                android:autofillHints="newPassword" />
+
+            <!--
+                BOTÃO: MOSTRAR SENHA
+
+                ID: btnMostrarSenhaCadastro
+
+                Alterna a visibilidade da senha.
+            -->
+
+            <TextView
+                android:id="@+id/btnMostrarSenhaCadastro"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="◉"
+                android:textSize="25sp"
+                android:textColor="@color/login_azul_escuro"
+                android:contentDescription="Mostrar senha"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+        <!--
+            CONTÊINER: CONFIRMAR SENHA
+
+            Permite verificar se o usuário
+            digitou a mesma senha duas vezes.
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_campo_login">
+
+            <!--
+                CAMPO: CONFIRMAR SENHA
+
+                ID: edtConfirmarSenha
+            -->
+
+            <EditText
+                android:id="@+id/edtConfirmarSenha"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"
+                android:background="@android:color/transparent"
+                android:hint="Confirmar senha"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/login_azul_escuro"
+                android:textColorHint="@color/login_texto_secundario"
+                android:textSize="17sp"
+                android:autofillHints="newPassword" />
+
+            <!--
+                BOTÃO: MOSTRAR CONFIRMAÇÃO
+
+                ID: btnMostrarConfirmacao
+
+                Alterna a visibilidade do campo.
+            -->
+
+            <TextView
+                android:id="@+id/btnMostrarConfirmacao"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="◉"
+                android:textSize="25sp"
+                android:textColor="@color/login_azul_escuro"
+                android:contentDescription="Mostrar confirmação de senha"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+        <!--
+            ÁREA DE ACEITAÇÃO DOS TERMOS
+
+            A caixa de seleção registra a escolha.
+
+            Os links serão configurados no Java.
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!--
+                CHECKBOX: ACEITAÇÃO
+
+                ID: checkTermos
+            -->
+
+            <CheckBox
+                android:id="@+id/checkTermos"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:buttonTint="@color/login_azul_escuro"
+                android:contentDescription="Concordo com os Termos de Uso e a Política de Privacidade" />
+
+            <!--
+                TEXTO DOS TERMOS
+
+                ID: txtTermos
+
+                O Java aplicará links clicáveis
+                sobre Termos de Uso e
+                Política de Privacidade.
+            -->
+
+            <TextView
+                android:id="@+id/txtTermos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:text="Concordo com os Termos de Uso e Política de Privacidade"
+                android:textColor="@color/login_azul_escuro"
+                android:textSize="15sp"
+                android:lineSpacingExtra="3dp" />
+
+        </LinearLayout>
+
+        <!--
+            BOTÃO CADASTRAR
+
+            ID: btnCadastrarUsuario
+
+            Executa a validação dos dados.
+        -->
+
+        <Button
+            android:id="@+id/btnCadastrarUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_botao_entrar"
+            android:backgroundTint="@null"
+            android:text="Cadastrar"
+            android:textAllCaps="false"
+            android:textColor="@color/login_branco"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+
+        <!--
+            ESPAÇADOR
+
+            Separa o botão principal
+            do link de retorno ao login.
+        -->
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="80dp" />
+
+        <!--
+            LINK: JÁ TEM UMA CONTA?
+
+            Permite retornar à tela de login.
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Já tem uma conta? "
+                android:textSize="16sp"
+                android:textColor="@color/login_azul_escuro" />
+
+            <TextView
+                android:id="@+id/btnEntrarCadastro"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="Entrar"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/login_azul"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

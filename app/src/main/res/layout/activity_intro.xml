@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    =====================================================
+    PROJETO: SALCITY
+    ARQUIVO: activity_intro.xml
+
+    OBJETIVO:
+    Controlar a apresentação das três introduções.
+
+    ESTRUTURA:
+    1. ViewPager2 - navegação horizontal.
+    2. Botão Pular - acesso ao login.
+    3. Indicadores - seleção da página.
+
+    OBSERVAÇÃO:
+    Os indicadores são componentes reais do Android.
+    =====================================================
+-->
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutIntroducao"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/salcity_branco">
+
+    <!--
+        COMPONENTE 1: VIEWPAGER2
+
+        ID: viewPagerIntro
+
+        RESPONSABILIDADE:
+        Exibir as três introduções.
+
+        A troca de páginas será controlada
+        pelo próprio ViewPager2.
+    -->
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerIntro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" />
+
+    <!--
+        COMPONENTE 2: BOTÃO PULAR
+
+        ID: btnPular
+
+        RESPONSABILIDADE:
+        Encerrar as introduções e abrir o login.
+
+        A área é transparente porque as artes
+        originais já apresentam a palavra Pular.
+
+        Quando utilizarmos imagens sem esse texto,
+        poderemos transformá-lo em um botão visível.
+    -->
+
+    <TextView
+        android:id="@+id/btnPular"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/pular"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!--
+        COMPONENTE 3: ÁREA DOS INDICADORES
+
+        RESPONSABILIDADE:
+        Exibir os três indicadores de navegação.
+
+        A faixa branca cobre os indicadores
+        desenhados nas imagens originais.
+
+        A altura poderá ser ajustada conforme
+        a proporção do dispositivo.
+    -->
+
+    <LinearLayout
+        android:id="@+id/faixaIndicadores"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="bottom"
+        android:background="@color/salcity_branco"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!-- Indicador da primeira introdução -->
+
+        <View
+            android:id="@+id/indicador1"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/indicador_inativo"
+            android:contentDescription="@string/descricao_indicador1"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- Indicador da segunda introdução -->
+
+        <View
+            android:id="@+id/indicador2"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/indicador_inativo"
+            android:contentDescription="@string/descricao_indicador2"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- Indicador da terceira introdução -->
+
+        <View
+            android:id="@+id/indicador3"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:background="@drawable/indicador_inativo"
+            android:contentDescription="@string/descricao_indicador3"
+            android:clickable="true"
+            android:focusable="true" />
+
+    </LinearLayout>
+
+</FrameLayout>

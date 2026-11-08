@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    =============================================================
+    PROJETO: SALCITY
+    ARQUIVO: activity_home.xml
+    LINGUAGEM: XML
+    =============================================================
+
+    OBJETIVO:
+    Construir a interface principal do aplicativo SalCity,
+    seguindo a identidade visual original.
+
+    COMPONENTES:
+    1. Google Maps.
+    2. Logo original do SalCity.
+    3. Botão de notificações.
+    4. Barra de pesquisa.
+    5. Botões Filtros e Calendário.
+    6. Controles de localização.
+    7. Barra inferior de navegação.
+    8. Botão central de criação de roteiros.
+
+    IMPORTANTE:
+    Todos os IDs foram preservados para manter
+    a compatibilidade com HomeActivity.java.
+
+    Os recursos gráficos utilizados já devem existir
+    na pasta res/drawable.
+    =============================================================
+-->
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#2BA8ED">
+
+    <!--
+        =====================================================
+        COMPONENTE 1: GOOGLE MAPS
+        =====================================================
+
+        ID: mapHome
+
+        OBJETIVO:
+        Apresentar o mapa interativo de Salvador.
+
+        SupportMapFragment:
+        Responsável pelo carregamento do Google Maps.
+
+        OBSERVAÇÃO:
+        O mapa pode não aparecer na prévia visual
+        do Android Studio.
+
+        Isso não significa necessariamente que exista
+        um erro na implementação.
+        =====================================================
+    -->
+
+    <androidx.fragment.app.FragmentContainerView
+
+        android:id="@+id/mapHome"
+
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent" />
+
+
+    <!--
+        =====================================================
+        COMPONENTE 2: CABEÇALHO DA HOME
+        =====================================================
+
+        OBJETIVO:
+        Agrupar os componentes superiores:
+
+        - Logo SalCity.
+        - Notificações.
+        - Pesquisa.
+        - Filtros.
+        - Calendário.
+
+        LinearLayout:
+        Organiza os componentes verticalmente.
+        =====================================================
+    -->
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="top"
+
+        android:orientation="vertical"
+
+        android:paddingStart="16dp"
+
+        android:paddingEnd="16dp"
+
+        android:paddingTop="18dp">
+
+
+        <!--
+            =================================================
+            COMPONENTE 3: LOGO E NOTIFICAÇÕES
+            =================================================
+
+            OBJETIVO:
+            Apresentar a identidade visual do aplicativo
+            e o botão de notificações.
+
+            A logo utilizada é a original:
+            logo_salcity.png
+
+            Nenhuma alteração na imagem é necessária.
+            =================================================
+        -->
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+
+            android:layout_height="88dp"
+
+            android:orientation="horizontal"
+
+            android:gravity="center_vertical">
+
+
+            <!-- LOGO ORIGINAL -->
+
+            <ImageView
+
+                android:id="@+id/imgLogoHome"
+
+                android:layout_width="0dp"
+
+                android:layout_height="82dp"
+
+                android:layout_weight="1"
+
+                android:layout_marginEnd="12dp"
+
+                android:src="@drawable/logo_salcity"
+
+                android:scaleType="fitStart"
+
+                android:adjustViewBounds="true"
+
+                android:contentDescription="Logo original SalCity" />
+
+
+            <!-- BOTÃO DE NOTIFICAÇÕES -->
+
+            <ImageButton
+
+                android:id="@+id/btnNotificacoesHome"
+
+                android:layout_width="52dp"
+
+                android:layout_height="52dp"
+
+                android:padding="13dp"
+
+                android:background="@drawable/bg_sc_white_circle"
+
+                android:src="@drawable/ic_sc_bell"
+
+                android:contentDescription="Notificações"
+
+                android:elevation="5dp" />
+
+        </LinearLayout>
+
+
+        <!--
+            =================================================
+            COMPONENTE 4: BARRA DE PESQUISA
+            =================================================
+
+            OBJETIVO:
+            Permitir que o usuário pesquise lugares,
+            eventos e restaurantes.
+
+            COMPONENTES:
+            - Ícone de pesquisa.
+            - Campo de texto.
+            - Botão de ação.
+
+            A lógica da pesquisa permanece
+            em HomeActivity.java.
+            =================================================
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <LinearLayout
+
+                android:layout_width="0dp"
+
+                android:layout_weight="1"
+
+                android:layout_height="60dp"
+
+
+
+                android:paddingStart="14dp"
+
+                android:paddingEnd="12dp"
+
+                android:orientation="horizontal"
+
+                android:gravity="center_vertical"
+
+                android:background="@drawable/bg_sc_search_box"
+
+                android:elevation="4dp">
+
+
+                <!-- ÍCONE DE PESQUISA -->
+
+                <ImageView
+
+                    android:layout_width="27dp"
+
+                    android:layout_height="27dp"
+
+                    android:src="@drawable/ic_sc_search"
+
+                    android:contentDescription="Pesquisar lugares" />
+
+
+                <!-- CAMPO DE PESQUISA -->
+
+                <EditText
+
+                    android:id="@+id/campoPesquisaHome"
+
+                    android:layout_width="0dp"
+
+                    android:layout_height="match_parent"
+
+                    android:layout_weight="1"
+
+                    android:layout_marginStart="10dp"
+
+                    android:background="@android:color/transparent"
+
+                    android:hint="Buscar lugares, eventos, restaurantes..."
+
+                    android:inputType="text"
+
+                    android:imeOptions="actionSearch"
+
+                    android:singleLine="true"
+
+                    android:textSize="14sp"
+
+                    android:textColor="#07336E"
+
+                    android:textColorHint="#777777"
+
+                    android:importantForAutofill="no"
+
+                    android:paddingStart="0dp"
+
+                    android:paddingEnd="4dp" />
+
+
+                <!-- BOTÃO DE AÇÃO DA PESQUISA -->
+
+                <!--
+        =====================================================
+        BOTÃO: BUSCAR
+        =====================================================
+
+        OBJETIVO:
+        Executar a ação de pesquisa configurada
+        na HomeActivity.java.
+
+        CORREÇÃO:
+        Área de toque aumentada para 48dp,
+        seguindo recomendações de acessibilidade.
+
+        ID preservado para compatibilidade com Java.
+        =====================================================
+    -->
+
+                <ImageButton
+                    android:id="@+id/btnBuscarHome"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_sc_chevron_down"
+                    android:contentDescription="Executar pesquisa" />
+
+            </LinearLayout>
+
+            <!-- Filtros ao lado da pesquisa, com área de toque acessível. -->
+            <LinearLayout
+                android:id="@+id/btnFiltrosHome"
+                android:layout_width="112dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_sc_search_box"
+                android:elevation="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Abrir filtros">
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_sc_filter"
+                    android:importantForAccessibility="no" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Filtros"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="#07336E" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!--
+        =====================================================
+        COMPONENTE 6: CONTROLES DE LOCALIZAÇÃO
+        =====================================================
+
+        OBJETIVO:
+        Permitir que o usuário:
+
+        1. Consulte sua localização.
+        2. Centralize o mapa em Salvador.
+
+        POSICIONAMENTO:
+        Canto inferior direito, acima da barra
+        de navegação.
+
+        Os eventos são configurados no Java.
+        =====================================================
+    -->
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="bottom|end"
+
+        android:layout_marginEnd="16dp"
+
+        android:layout_marginBottom="118dp"
+
+        android:orientation="vertical">
+
+
+        <!-- BOTÃO MINHA LOCALIZAÇÃO -->
+
+        <ImageButton
+
+            android:id="@+id/btnMinhaLocalizacaoHome"
+
+            android:layout_width="58dp"
+
+            android:layout_height="58dp"
+
+            android:padding="14dp"
+
+            android:background="@drawable/bg_sc_white_circle"
+
+            android:src="@drawable/ic_sc_locate"
+
+            android:contentDescription="Minha localização"
+
+            android:elevation="5dp" />
+
+
+        <!-- BOTÃO CENTRALIZAR EM SALVADOR -->
+
+        <ImageButton
+
+            android:id="@+id/btnCentralizarHome"
+
+            android:layout_width="58dp"
+
+            android:layout_height="58dp"
+
+            android:layout_marginTop="12dp"
+
+            android:padding="14dp"
+
+            android:background="@drawable/bg_sc_white_circle"
+
+            android:src="@drawable/ic_sc_pin"
+
+            android:contentDescription="Centralizar mapa em Salvador"
+
+            android:elevation="5dp" />
+
+    </LinearLayout>
+
+
+    <!--
+        =====================================================
+        COMPONENTE 7: BARRA INFERIOR
+        =====================================================
+
+        OBJETIVO:
+        Permitir a navegação entre as principais
+        funcionalidades do aplicativo.
+
+        ELEMENTOS:
+        - Filtros.
+        - Calendário.
+        - Espaço para o botão +.
+        - Roteiros.
+        - Perfil.
+
+        O botão + será posicionado separadamente
+        sobre esta barra.
+
+        IDs dos botões atualizados para refletir suas funções.
+        =====================================================
+    -->
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+
+        android:layout_height="88dp"
+
+        android:layout_gravity="bottom"
+
+        android:orientation="horizontal"
+
+        android:gravity="center"
+
+        android:background="@drawable/bg_sc_nav"
+
+        android:elevation="12dp"
+
+        android:paddingStart="8dp"
+
+        android:paddingEnd="8dp">
+
+
+        <!--
+            =================================================
+            BOTÃO FILTROS
+            =================================================
+
+            OBJETIVO:
+            Abrir a tela de filtros turísticos.
+            =================================================
+        -->
+
+        <LinearLayout
+
+            android:id="@+id/btnEventosHome"
+
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+
+            android:orientation="vertical"
+
+            android:gravity="center"
+
+            android:clickable="true"
+
+            android:focusable="true"
+
+            android:contentDescription="Eventos">
+
+
+            <ImageView
+
+                android:layout_width="27dp"
+
+                android:layout_height="27dp"
+
+                android:src="@drawable/ic_sc_events"
+
+                android:importantForAccessibility="no" />
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:text="Eventos"
+
+                android:textColor="#0868E8"
+
+                android:textSize="12sp"
+
+                android:importantForAccessibility="no" />
+
+        </LinearLayout>
+
+
+        <!--
+            =================================================
+            BOTÃO CALENDÁRIO
+            =================================================
+
+            OBJETIVO:
+            Abrir a tela do calendário.
+            =================================================
+        -->
+
+        <LinearLayout
+
+            android:id="@+id/btnCalendarioHome"
+
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+
+            android:orientation="vertical"
+
+            android:gravity="center"
+
+            android:clickable="true"
+
+            android:focusable="true"
+
+            android:contentDescription="Calendário">
+
+
+            <ImageView
+
+                android:layout_width="27dp"
+
+                android:layout_height="27dp"
+
+                android:src="@drawable/ic_sc_calendar"
+
+                android:importantForAccessibility="no" />
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:text="Calendário"
+
+                android:textColor="#07336E"
+
+                android:textSize="12sp"
+
+                android:importantForAccessibility="no" />
+
+        </LinearLayout>
+
+
+        <!--
+            =================================================
+            ESPAÇO CENTRAL
+            =================================================
+
+            Reserva espaço para o botão amarelo
+            de criação de roteiros.
+            =================================================
+        -->
+
+        <Space
+
+            android:layout_width="0dp"
+
+            android:layout_height="1dp"
+
+            android:layout_weight="1" />
+
+
+        <!--
+            =================================================
+            BOTÃO ROTEIROS
+            =================================================
+
+            OBJETIVO:
+            Abrir MeusRoteirosActivity.
+            =================================================
+        -->
+
+        <LinearLayout
+
+            android:id="@+id/btnMeusRoteirosHome"
+
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+
+            android:orientation="vertical"
+
+            android:gravity="center"
+
+            android:clickable="true"
+
+            android:focusable="true"
+
+            android:contentDescription="Meus roteiros">
+
+
+            <ImageView
+
+                android:layout_width="27dp"
+
+                android:layout_height="27dp"
+
+                android:src="@drawable/ic_sc_route_map"
+
+                android:importantForAccessibility="no" />
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:text="Roteiros"
+
+                android:textColor="#07336E"
+
+                android:textSize="12sp"
+
+                android:importantForAccessibility="no" />
+
+        </LinearLayout>
+
+
+        <!--
+            =================================================
+            BOTÃO PERFIL
+            =================================================
+
+            OBJETIVO:
+            Abrir o menu de opções do usuário.
+            =================================================
+        -->
+
+        <LinearLayout
+
+            android:id="@+id/btnPerfilHome"
+
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+
+            android:orientation="vertical"
+
+            android:gravity="center"
+
+            android:clickable="true"
+
+            android:focusable="true"
+
+            android:contentDescription="Perfil">
+
+
+            <ImageView
+
+                android:layout_width="27dp"
+
+                android:layout_height="27dp"
+
+                android:src="@drawable/ic_sc_profile"
+
+                android:importantForAccessibility="no" />
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+
+                android:text="Perfil"
+
+                android:textColor="#07336E"
+
+                android:textSize="12sp"
+
+                android:importantForAccessibility="no" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <!--
+        =====================================================
+        COMPONENTE 8: BOTÃO CRIAR ROTEIRO
+        =====================================================
+
+        ID: btnCriarRoteiroHome
+
+        OBJETIVO:
+        Abrir a tela CriarNovoRoteiroActivity.
+
+        POSICIONAMENTO:
+        Centro inferior da Home.
+
+        O botão fica parcialmente sobreposto
+        à barra de navegação.
+
+        A lógica de clique permanece no Java.
+        =====================================================
+    -->
+
+    <ImageButton
+
+        android:id="@+id/btnCriarRoteiroHome"
+
+        android:layout_width="76dp"
+
+        android:layout_height="76dp"
+
+        android:layout_gravity="bottom|center_horizontal"
+
+        android:layout_marginBottom="50dp"
+
+        android:padding="18dp"
+
+        android:background="@drawable/bg_sc_yellow"
+
+        android:src="@drawable/ic_sc_plus"
+
+        android:contentDescription="Criar novo roteiro"
+
+        android:elevation="15dp" />
+
+</FrameLayout>

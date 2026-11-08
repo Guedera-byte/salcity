@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sc_criar_voltar">Voltar</string>
+    <string name="sc_criar_titulo">Criar novo roteiro</string>
+    <string name="sc_criar_nome">Nome do roteiro</string>
+    <string name="sc_criar_nome_hint">Ex: Meu fim de semana em Salvador</string>
+    <string name="sc_criar_descricao">Descrição (opcional)</string>
+    <string name="sc_criar_descricao_hint">Descreva seu roteiro...</string>
+    <string name="sc_criar_contador_inicial">0/300</string>
+    <string name="sc_criar_contador">%1$d/300</string>
+    <string name="sc_criar_dias">Selecione os dias</string>
+    <string name="sc_criar_inicio">Início</string>
+    <string name="sc_criar_fim">Fim</string>
+    <string name="sc_criar_data_placeholder">dd/mm/aaaa</string>
+    <string name="sc_criar_escolher_inicio">Escolher data de início</string>
+    <string name="sc_criar_escolher_fim">Escolher data de término</string>
+    <string name="sc_criar_tags">Tags de interesse</string>
+    <string name="sc_criar_restaurantes">Recomendação de restaurantes</string>
+    <string name="sc_criar_incluir_restaurantes">Incluir restaurantes no roteiro</string>
+    <string name="sc_criar_localizacao">Localização</string>
+    <string name="sc_criar_escolher_bairro">Escolha um bairro</string>
+    <string name="sc_criar_usar_localizacao">◎ Usar localização atual</string>
+    <string name="sc_criar_transporte">Meios de transporte</string>
+    <string name="sc_criar_orcamento">Orçamento estimado (por pessoa)</string>
+    <string name="sc_criar_orcamento_inicial">R$ 0</string>
+    <string name="sc_criar_orcamento_maximo">R$ 500+</string>
+    <string name="sc_criar_botao">Criar roteiro</string>
+</resources>

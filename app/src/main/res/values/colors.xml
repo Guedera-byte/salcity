@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="salcity_azul_escuro">#07377A</color>
+    <color name="salcity_azul">#008EF5</color>
+    <color name="salcity_amarelo">#FFC21B</color>
+    <color name="salcity_branco">#FFFFFF</color>
+    <color name="salcity_cinza">#C9D4E0</color>
+    <color name="salcity_preto">#000000</color>
+    <color name="login_azul">#0755AC</color>
+    <color name="login_azul_escuro">#082D68</color>
+    <color name="login_azul_claro">#4BADEB</color>
+    <color name="login_amarelo">#FFBF18</color>
+    <color name="login_borda">#D7E1EA</color>
+    <color name="login_branco">#FFFFFF</color>
+    <color name="login_texto_secundario">#476A91</color>
+    <color name="home_blue">#139CF0</color>
+    <color name="home_navy">#07336E</color>
+    <color name="home_selected">#087BF1</color>
+    <color name="home_yellow">#FFBD08</color>
+    <color name="home_white">#FFFFFF</color>
+    <color name="home_border">#D8E5EE</color>
+    <color name="home_secondary">#587796</color>
+
+</resources>

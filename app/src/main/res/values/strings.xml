@@ -1,0 +1,74 @@
+<resources>
+
+    <!-- Nome oficial do aplicativo -->
+    <string name="app_name">SalCity</string>
+
+    <!-- Descrição acessível da primeira introdução -->
+    <string name="descricao_intro1">
+        SalCity. Explore Salvador do seu jeito!
+        Descubra os melhores lugares, eventos,
+        restaurantes e experiências da cidade
+        de forma personalizada.
+    </string>
+
+    <!-- Textos utilizados na navegação -->
+    <string name="pular">Pular</string>
+    <string name="proximo">Próximo</string>
+    <string name="comecar">Começar</string>
+
+    <!-- Mensagens temporárias -->
+    <string name="intro2_pendente">
+        A introdução 2 será implementada em breve.
+    </string>
+
+    <string name="intro3_pendente">
+        A introdução 3 será implementada em breve.
+    </string>
+    <!--
+        =================================================
+        TEXTOS DA INTRODUÇÃO 2
+        =================================================
+    -->
+
+    <!-- Descrição acessível da segunda introdução -->
+    <string name="descricao_intro2">
+    Crie seu roteiro ideal.
+    Informe o tempo da sua estadia, seus interesses,
+    orçamento, meio de transporte e muito mais.
+    O SalCity monta um roteiro completo sob medida
+    para você.
+</string>
+
+    <!-- Descrição dos indicadores de navegação -->
+    <string name="descricao_indicador1">
+    Ir para introdução 1
+</string>
+
+    <string name="descricao_indicador2">
+    Introdução 2, página atual
+</string>
+
+    <string name="descricao_indicador3">
+    Ir para introdução 3
+</string>
+    <!--
+        =================================================
+        TEXTOS DA INTRODUÇÃO 3
+        =================================================
+    -->
+
+    <!-- Descrição acessível da terceira introdução -->
+    <string name="descricao_intro3">
+    Descubra experiências únicas.
+    Receba roteiros prontos com mapa,
+    ordem das paradas, tempo de percurso,
+    restaurantes e dicas locais.
+    Explore Salvador de um jeito prático,
+    completo e do seu jeito!
+</string>
+
+    <!-- Texto acessível do botão principal -->
+    <string name="comecar_agora">
+    Começar agora
+</string>
+</resources>

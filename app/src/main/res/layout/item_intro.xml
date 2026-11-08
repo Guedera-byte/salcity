@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    =====================================================
+    PROJETO: SALCITY
+    ARQUIVO: item_intro.xml
+
+    OBJETIVO:
+    Definir a estrutura visual reutilizável
+    das três páginas de introdução.
+
+    COMPONENTES:
+    1. Imagem da introdução.
+    2. Área clicável do botão Começar agora.
+
+    A imagem será definida pelo Adapter.
+    =====================================================
+-->
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutItemIntro"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--
+        IMAGEM DA INTRODUÇÃO
+
+        O Adapter definirá qual imagem será exibida:
+        intro_1, intro_2 ou intro_3.
+    -->
+
+    <ImageView
+        android:id="@+id/imgIntroducao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:importantForAccessibility="no" />
+
+    <!--
+        BOTÃO COMEÇAR AGORA
+
+        Será utilizado somente na introdução 3.
+
+        Nas introduções 1 e 2, ficará oculto.
+
+        A área é transparente porque o botão azul
+        já faz parte da terceira imagem original.
+    -->
+
+    <View
+        android:id="@+id/btnComecarAgora"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/comecar_agora"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
+</FrameLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tela rolável, com cartões individuais e imagens independentes. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/bg_roteiros_tela" android:orientation="vertical"
+    android:fitsSystemWindows="true">
+    <ImageButton android:id="@+id/btnVoltarRoteiros" android:layout_width="52dp" android:layout_height="52dp"
+        android:layout_marginStart="18dp" android:layout_marginTop="10dp"
+        android:padding="13dp" android:background="@android:color/transparent"
+        android:src="@drawable/ic_roteiros_voltar" android:contentDescription="Voltar"
+        android:tint="@android:color/white"/>
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:fillViewport="true" android:clipToPadding="false">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingStart="18dp" android:paddingEnd="18dp" android:paddingBottom="28dp">
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" android:text="Roteiros sugeridos" android:textColor="#FFFFFF"
+                android:textStyle="bold" android:textSize="29sp"/>
+            <TextView android:id="@+id/txtResumoRoteiros" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:layout_marginBottom="24dp"
+                android:text="Com base nos seus filtros, encontramos 2 opções incríveis para você!"
+                android:textColor="#FFFFFF" android:textSize="18sp" android:lineSpacingExtra="3dp"/>
+            <include android:id="@+id/cartaoEssencial" layout="@layout/item_roteiro_essencial"/>
+            <include android:id="@+id/cartaoSolMar" layout="@layout/item_roteiro_sol_mar"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

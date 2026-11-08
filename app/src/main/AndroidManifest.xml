@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+        =====================================================
+        PERMISSÃO DE INTERNET
+        =====================================================
+
+        Necessária para a comunicação com serviços
+        utilizados pelo aplicativo.
+    -->
+
+    <uses-permission
+        android:name="android.permission.INTERNET" />
+
+    <!--
+    =====================================================
+    LOCALIZAÇÃO APROXIMADA
+    =====================================================
+
+    Permite consultar uma localização aproximada
+    quando o usuário autorizar.
+-->
+
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
+    <!--
+        =====================================================
+        LOCALIZAÇÃO PRECISA
+        =====================================================
+
+        Permite consultar coordenadas mais precisas
+        quando o usuário autorizar.
+    -->
+
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Salcity">
+        <!--
+            =================================================
+            ACTIVITY: INTRODUÇÃO
+            =================================================
+
+            OBJETIVO:
+            Controlar as três páginas utilizando ViewPager2.
+
+            MAIN:
+            Define a Activity inicial.
+
+            LAUNCHER:
+            Permite iniciar pelo ícone do aplicativo.
+        -->
+
+        <activity
+            android:name=".activities.IntroActivity"
+            android:exported="true">
+
+            <intent-filter>
+
+                <action
+                    android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+
+            </intent-filter>
+
+        </activity>
+        <!--
+            ACTIVITY: LOGIN
+
+            Tela de destino do botão Pular.
+        -->
+
+        <activity
+            android:name=".activities.LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+    <!--=================================================
+    ACTIVITY: CADASTRO
+    =================================================
+
+    OBJETIVO:
+    Permitir o preenchimento dos dados
+    necessários à criação de uma conta.
+
+    exported="false":
+    A tela será aberta internamente pelo SalCity.
+
+    adjustResize:
+    Solicita o ajuste da área disponível
+    quando o teclado estiver aberto.
+-->
+
+        <activity
+            android:name=".activities.CadastroActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <!--
+            =====================================================
+            GOOGLE MAPS API KEY
+            =====================================================
+
+            O valor ${MAPS_API_KEY} será substituído
+            pelo Gradle durante a compilação.
+
+            A chave original está no local.properties.
+        -->
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+        <!--
+            =====================================================
+            HOME ACTIVITY
+            =====================================================
+
+            Tela principal do SalCity.
+
+            Será aberta após o login ou pelo fluxo
+            temporário de testes.
+        -->
+
+        <activity
+            android:name=".activities.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.EventosIaActivity"
+            android:exported="false" />
+        <!--
+    =================================================
+    ACTIVITY: FILTROS
+    =================================================
+
+    Tela responsável pela personalização
+    dos roteiros turísticos do SalCity.
+-->
+
+        <activity
+            android:name=".activities.FiltrosActivity"
+            android:exported="false" />
+
+        <!--
+    =====================================================
+    ACTIVITY: ROTEIROS SUGERIDOS
+    =====================================================
+
+    Exibe as sugestões de roteiros turísticos
+    apresentadas após a seleção dos filtros.
+-->
+
+        <activity
+            android:name=".activities.RoteirosSugeridosActivity"
+            android:exported="false" />
+        <!--
+            =====================================================
+            ACTIVITY: DETALHES DO ROTEIRO
+            =====================================================
+
+            Responsável por apresentar:
+            - Informações do roteiro.
+            - Linha do tempo.
+            - Mapa.
+            - Favoritos.
+            - Botão de adição.
+        -->
+
+        <activity
+            android:name=".activities.RoteiroDetalhadoActivity"
+            android:exported="false" />
+
+        <!-- Tela de adição de pontos ao roteiro -->
+        <activity
+            android:name=".activities.AdicionarRoteiroActivity"
+            android:exported="false" />
+
+        <!--
+    =====================================================
+    TELA: CRIAR NOVO ROTEIRO
+    =====================================================
+
+    Permite ao usuário criar um roteiro personalizado
+    utilizando nome, descrição, datas, tags e orçamento.
+-->
+
+        <activity
+            android:name=".activities.CriarNovoRoteiroActivity"
+            android:exported="false" />
+
+        <!--
+    =====================================================
+    TELA: MEUS ROTEIROS
+    =====================================================
+
+    Centraliza os roteiros criados pelo usuário
+    e permite acessar a criação de novos roteiros.
+-->
+
+        <activity
+            android:name=".activities.MeusRoteirosActivity"
+            android:exported="false" />
+
+
+
+        <!--
+    =====================================================
+    ACTIVITY: CALENDÁRIO
+    =====================================================
+
+    OBJETIVO:
+    Exibir o calendário turístico do SalCity.
+
+    FUNCIONALIDADES:
+    - Navegação entre meses.
+    - Seleção de datas.
+    - Visualização de eventos.
+    - Visualização de roteiros cadastrados.
+-->
+
+        <activity
+            android:name=".activities.CalendarioActivity"
+            android:exported="false" />
+
+        <!-- Tela de perfil do usuário -->
+        <activity
+            android:name=".activities.PerfilActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

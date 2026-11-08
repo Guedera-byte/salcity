@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    =====================================================
+    PROJETO: SALCITY
+    ARQUIVO: activity_login.xml
+    TELA: LOGIN
+
+    OBJETIVO:
+    Permitir que o usuário informe suas credenciais
+    e acesse os recursos do aplicativo.
+
+    COMPONENTES:
+    1. Botão Voltar
+    2. Logo SalCity
+    3. Mensagem de boas-vindas
+    4. Campo de e-mail ou usuário
+    5. Campo de senha
+    6. Botão de visibilidade da senha
+    7. Recuperação de senha
+    8. Botão Entrar
+    9. Botões de autenticação social
+    10. Link para cadastro
+
+    OBSERVAÇÃO:
+    A autenticação será integrada posteriormente.
+    =====================================================
+-->
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollLogin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/login_branco"
+    android:clipToPadding="false">
+
+    <!--
+        CONTÊINER PRINCIPAL
+
+        Organiza os componentes verticalmente.
+        A altura mínima acompanha a área disponível.
+    -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="28dp">
+
+        <!--
+            BOTÃO VOLTAR
+
+            Permite retornar à apresentação inicial.
+        -->
+
+        <TextView
+            android:id="@+id/btnVoltarLogin"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="‹"
+            android:textSize="40sp"
+            android:textColor="@color/login_azul_escuro"
+            android:contentDescription="Voltar"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!--
+            LOGO DO SALCITY
+
+            Utiliza a logo original em PNG.
+        -->
+
+        <ImageView
+            android:id="@+id/imgLogoLogin"
+            android:layout_width="250dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/logo_salcity"
+            android:scaleType="fitCenter"
+            android:contentDescription="Logo do SalCity" />
+
+        <!--
+            TÍTULO PRINCIPAL
+        -->
+
+        <TextView
+            android:id="@+id/txtTituloLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Bem-vindo(a) de volta!"
+            android:textColor="@color/login_azul_escuro"
+            android:textSize="27sp"
+            android:textStyle="bold" />
+
+        <!--
+            DESCRIÇÃO DA TELA
+        -->
+
+        <TextView
+            android:id="@+id/txtDescricaoLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="Faça login para continuar explorando Salvador."
+            android:textColor="@color/login_texto_secundario"
+            android:textSize="17sp"
+            android:lineSpacingExtra="3dp" />
+
+        <!--
+            CAMPO DE E-MAIL OU USUÁRIO
+
+            O EditText permite digitação.
+
+            inputType="text":
+            Aceita e-mail ou nome de usuário.
+        -->
+
+        <EditText
+            android:id="@+id/edtEmailLogin"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_campo_login"
+            android:hint="E-mail ou usuário"
+            android:inputType="text"
+            android:singleLine="true"
+            android:paddingStart="20dp"
+            android:paddingEnd="16dp"
+            android:textColor="@color/login_azul_escuro"
+            android:textColorHint="@color/login_texto_secundario"
+            android:textSize="17sp"
+            android:autofillHints="username" />
+
+        <!--
+            CONTÊINER DA SENHA
+
+            Agrupa o campo de senha e o botão
+            que mostra ou oculta os caracteres.
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/bg_campo_login">
+
+            <!--
+                CAMPO DE SENHA
+
+                Os caracteres são ocultados
+                automaticamente pelo Android.
+            -->
+
+            <EditText
+                android:id="@+id/edtSenhaLogin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"
+                android:background="@android:color/transparent"
+                android:hint="Senha"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColor="@color/login_azul_escuro"
+                android:textColorHint="@color/login_texto_secundario"
+                android:textSize="17sp"
+                android:autofillHints="password" />
+
+            <!--
+                BOTÃO MOSTRAR/OCULTAR SENHA
+
+                O Java alternará a visibilidade
+                dos caracteres digitados.
+            -->
+
+            <TextView
+                android:id="@+id/btnMostrarSenha"
+                android:layout_width="56dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="◉"
+                android:textSize="25sp"
+                android:textColor="@color/login_azul_escuro"
+                android:contentDescription="Mostrar senha"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+        <!--
+            RECUPERAÇÃO DE SENHA
+
+            Abrirá a futura tela de recuperação.
+        -->
+
+        <TextView
+            android:id="@+id/btnEsqueceuSenha"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:text="Esqueceu sua senha?"
+            android:textColor="@color/login_azul"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!--
+            BOTÃO ENTRAR
+
+            Executará a validação dos campos
+            e, futuramente, a autenticação real.
+        -->
+
+        <Button
+            android:id="@+id/btnEntrar"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_botao_entrar"
+            android:backgroundTint="@null"
+            android:text="Entrar"
+            android:textAllCaps="false"
+            android:textColor="@color/login_branco"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+
+        <!--
+            DIVISÓRIA ENTRE LOGIN TRADICIONAL
+            E LOGIN SOCIAL
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/login_borda" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp"
+                android:text="ou"
+                android:textSize="16sp"
+                android:textColor="@color/login_texto_secundario" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/login_borda" />
+
+        </LinearLayout>
+
+        <!--
+            BOTÃO GOOGLE
+
+            A integração com a conta Google
+            será implementada posteriormente.
+        -->
+
+        <TextView
+            android:id="@+id/btnLoginGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:background="@drawable/bg_botao_social"
+            android:text="G   Continuar com Google"
+            android:textColor="@color/login_azul_escuro"
+            android:textSize="17sp"
+            android:contentDescription="Continuar com Google"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!--
+            BOTÃO FACEBOOK
+
+            A integração com Facebook
+            será implementada posteriormente.
+        -->
+
+        <TextView
+            android:id="@+id/btnLoginFacebook"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:background="@drawable/bg_botao_social"
+            android:text="f   Continuar com Facebook"
+            android:textColor="@color/login_azul_escuro"
+            android:textSize="17sp"
+            android:contentDescription="Continuar com Facebook"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!--
+            LINK PARA CADASTRO
+
+            O texto é dividido em duas partes:
+            mensagem e ação.
+        -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Não tem uma conta? "
+                android:textSize="16sp"
+                android:textColor="@color/login_azul_escuro" />
+
+            <TextView
+                android:id="@+id/btnCadastrar"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="Cadastre-se"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/login_azul"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    PROJETO: SALCITY
+    ARQUIVO: indicador_inativo.xml
+
+    OBJETIVO:
+    Representar as páginas não selecionadas.
+-->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Cor cinza dos indicadores inativos -->
+    <solid android:color="@color/salcity_cinza" />
+
+    <!-- Dimensão padrão -->
+    <size
+        android:width="18dp"
+        android:height="18dp" />
+
+</shape>

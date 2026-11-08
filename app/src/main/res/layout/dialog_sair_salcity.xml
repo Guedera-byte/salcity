@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_sair_cartao"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingLeft="22dp"
+        android:paddingTop="26dp"
+        android:paddingRight="22dp"
+        android:paddingBottom="24dp">
+
+        <!-- Logo original: imagem definida na HomeActivity, se disponível. -->
+        <ImageView
+            android:id="@+id/imgLogoSair"
+            android:layout_width="168dp"
+            android:layout_height="146dp"
+            android:contentDescription="@string/sair_logo_descricao"
+            android:scaleType="fitCenter"
+            android:visibility="gone" />
+
+        <!-- Aparece apenas se a logo não tiver sido configurada. -->
+        <TextView
+            android:id="@+id/txtLogoAlternativaSair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/app_name"
+            android:textColor="#07336E"
+            android:textSize="38sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/sair_titulo"
+            android:textColor="#07336E"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/sair_mensagem"
+            android:textColor="#547394"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btnConfirmarSair"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_sair_amarelo"
+            android:backgroundTint="@null"
+            android:text="@string/sair_confirmar"
+            android:textAllCaps="false"
+            android:textColor="#07336E"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnCancelarSair"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_sair_cancelar"
+            android:backgroundTint="@null"
+            android:text="@string/sair_cancelar"
+            android:textAllCaps="false"
+            android:textColor="#07336E"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>
