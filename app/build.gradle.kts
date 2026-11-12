@@ -117,10 +117,14 @@ dependencies {
     // Biblioteca para consultar a localização do dispositivo.
     implementation("com.google.android.gms:play-services-location:21.3.0")
 
-    // Lon-in com o google
+    // Log-in com o google
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.googleid)
     testImplementation("org.robolectric:robolectric:4.14.1")
     testImplementation("androidx.test:core:1.6.1")
+
+    // Maps
+        implementation("com.google.android.libraries.places:places:4.1.0")
+        implementation("com.google.android.material:material:1.12.0")
 }
