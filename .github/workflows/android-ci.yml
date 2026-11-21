@@ -1,0 +1,70 @@
+
+name: SalCity - Testes Android
+
+# Executa a automação em qualquer push,
+# em pull requests para a master e manualmente.
+on:
+  push:
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testes-android:
+    name: Compilacao e testes unitarios
+    runs-on: ubuntu-latest
+
+    steps:
+      # Baixa os arquivos do repositorio.
+      - name: Checkout do projeto
+        uses: actions/checkout@v4
+
+      # Configura o Java utilizado pelo Gradle.
+      - name: Configurar Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      # Instala ferramentas de linha de comando do Android.
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v3
+
+      # Instala os componentes usados pelo SalCity.
+      - name: Instalar Android SDK 37
+        run: |
+          sdkmanager --install \
+            "platform-tools" \
+            "platforms;android-37" \
+            "build-tools;36.0.0"
+
+      # Configura e armazena o cache do Gradle.
+      - name: Configurar Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      # Permite executar o Gradle Wrapper no Linux.
+      - name: Permitir execucao do Gradle
+        run: chmod +x ./gradlew
+
+      # Executa os testes unitarios da variante Debug.
+      - name: Executar testes unitarios
+        run: ./gradlew :app:testDebugUnitTest --stacktrace
+
+      # Verifica se o aplicativo compila.
+      - name: Compilar aplicativo Debug
+        run: ./gradlew :app:assembleDebug --stacktrace
+
+      # Guarda os relatorios de testes gerados.
+      - name: Publicar relatorios de testes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorios-testes-salcity
+          path: |
+            app/build/test-results/testDebugUnitTest/
+            app/build/reports/tests/testDebugUnitTest/
+          if-no-files-found: warn
