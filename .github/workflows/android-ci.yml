@@ -34,13 +34,14 @@ jobs:
         with:
           packages: 'platform-tools'
 
-      # Instala os componentes usados pelo SalCity.
+      # Instala os componentes Android necessários para o SalCity.
       - name: Instalar Android SDK 37
         run: |
           sdkmanager --install \
             "platform-tools" \
-            "platforms;android-37" \
+            "platforms;android-37.0" \
             "build-tools;36.0.0"
+
 
       # Configura e armazena o cache do Gradle.
       - name: Configurar Gradle
