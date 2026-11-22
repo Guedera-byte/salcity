@@ -59,6 +59,21 @@ jobs:
       - name: Compilar aplicativo Debug
         run: ./gradlew :app:assembleDebug --stacktrace
 
+      # Executa a analise estatica do codigo Java.
+      - name: Analisar codigo Java com PMD
+        run: ./gradlew :app:pmdSalCity --console=plain
+
+      # Disponibiliza os relatorios do PMD no GitHub.
+      - name: Publicar relatorios PMD
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorio-pmd-salcity
+          path: |
+            app/build/reports/pmd/pmdSalCity.html
+            app/build/reports/pmd/pmdSalCity.xml
+          if-no-files-found: warn
+
       # Guarda os relatorios de testes gerados.
       - name: Publicar relatorios de testes
         if: always()

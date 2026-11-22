@@ -1,7 +1,11 @@
 import java.util.Properties
+import org.gradle.api.plugins.quality.Pmd
+
 plugins {
     alias(libs.plugins.android.application)
+    id("pmd")
 }
+
 // =====================================================
 // SALCITY - CONFIGURAÇÃO DO GOOGLE MAPS
 // =====================================================
@@ -127,4 +131,42 @@ dependencies {
     // Maps
         implementation("com.google.android.libraries.places:places:4.1.0")
         implementation("com.google.android.material:material:1.12.0")
+}
+
+
+// Analise estatica dos arquivos Java do SalCity.
+pmd {
+    toolVersion = "7.24.0"
+    isIgnoreFailures = true
+    isConsoleOutput = true
+
+    ruleSets = listOf(
+        "category/java/bestpractices.xml",
+        "category/java/errorprone.xml",
+        "category/java/design.xml"
+    )
+}
+
+tasks.register<Pmd>("pmdSalCity") {
+    group = "verification"
+    description = "Analisa a qualidade do codigo Java do SalCity"
+
+    setSource(fileTree("src/main/java") {
+        include("**/*.java")
+    })
+
+    classpath = files()
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+
+        xml.outputLocation.set(
+            layout.buildDirectory.file("reports/pmd/pmdSalCity.xml")
+        )
+
+        html.outputLocation.set(
+            layout.buildDirectory.file("reports/pmd/pmdSalCity.html")
+        )
+    }
 }
