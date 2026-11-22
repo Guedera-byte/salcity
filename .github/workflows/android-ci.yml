@@ -1,8 +1,6 @@
-
 name: SalCity - Testes Android
 
-# Executa a automação em qualquer push,
-# em pull requests para a master e manualmente.
+# Executa a automacao em cada push, em PRs para master e manualmente.
 on:
   push:
   pull_request:
@@ -30,12 +28,11 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      # Instala ferramentas de linha de comando do Android.
-    
-- name: Configurar Android SDK
-  uses: android-actions/setup-android@v4
-  with:
-    packages: 'platform-tools'
+      # Configura o Android SDK.
+      - name: Configurar Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: 'platform-tools'
 
       # Instala os componentes usados pelo SalCity.
       - name: Instalar Android SDK 37
