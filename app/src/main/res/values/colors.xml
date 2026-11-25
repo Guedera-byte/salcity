@@ -22,5 +22,8 @@
     <color name="home_white">#FFFFFF</color>
     <color name="home_border">#D8E5EE</color>
     <color name="home_secondary">#587796</color>
-
+    <color name="azul_salcity">#07336E</color>
+    <color name="azul_destaque_salcity">#0077F5</color>
+    <color name="texto_secundario_salcity">#456380</color>
+    <color name="favorito_vermelho">#FF0000</color>
 </resources>
