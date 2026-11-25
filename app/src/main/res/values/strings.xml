@@ -71,4 +71,48 @@
     <string name="comecar_agora">
     Começar agora
 </string>
+    <!-- Roteiro demonstrativo Salvador Essencial -->
+    <string-array name="roteiro_essencial_horarios">
+        <item>08:00</item>
+        <item>09:30</item>
+        <item>11:30</item>
+        <item>13:00</item>
+        <item>15:00</item>
+        <item>17:00</item>
+    </string-array>
+
+    <string-array name="roteiro_essencial_nomes">
+        <item>Elevador Lacerda</item>
+        <item>Mercado Modelo</item>
+        <item>Pelourinho</item>
+        <item>Almoço</item>
+        <item>Igreja do Bonfim</item>
+        <item>Pôr do sol no Farol da Barra</item>
+    </string-array>
+
+    <string-array name="roteiro_essencial_descricoes">
+        <item>Vista panorâmica da cidade</item>
+        <item>Artesanato e cultura local</item>
+        <item>Centro histórico e cultural</item>
+        <item>Restaurante recomendado</item>
+        <item>Patrimônio histórico</item>
+        <item>Encerramento do roteiro</item>
+    </string-array>
+
+    <string name="roteiro_essencial_titulo">Salvador Essencial</string>
+    
+    <string name="roteiro_essencial_descricao_completa">Salvador Essencial\n\nUm passeio demonstrativo por alguns dos lugares mais conhecidos de Salvador. A proposta combina história, cultura e gastronomia.\n\nDuração: 1 dia\nParadas apresentadas: 6\nTempo estimado: aproximadamente 8 horas\n\nObservação: horários, trajetos e locais de alimentação são exemplos do protótipo. O cálculo real de deslocamento e a personalização serão realizados futuramente pelo back-end.</string>
+
+    <string name="roteiro_salvar">Salvar roteiro</string>
+    <string name="roteiro_salvo">Roteiro salvo ✓</string>
+    <string name="roteiro_salvo_sucesso">Roteiro salvo com sucesso!</string>
+    <string name="roteiro_ja_salvo">Este roteiro já está salvo</string>
+    <string name="roteiro_erro_salvar">Não foi possível salvar o roteiro</string>
+    <string name="roteiro_erro_ler">Erro ao ler ou salvar os roteiros locais</string>
+    <string name="roteiro_notificacoes_futuras">Notificações disponíveis em uma etapa futura</string>
+    <string name="roteiro_remover_favorito">Remover dos favoritos</string>
+    <string name="roteiro_adicionar_favorito">Adicionar aos favoritos</string>
+    <string name="roteiro_foto_descricao">Fotografia de %1$s</string>
+    <string name="roteiro_horario_formatado">○  %1$s</string>
+    <string name="roteiro_marcador_formatado">%1$s — %2$s</string>    
 </resources>
