@@ -1,14 +1,14 @@
-# Forçando a execução do CI
 name: Android CI
 
 on:
-  pull_request:
-    branches: [ mestre ]
   push:
-    branches: [ mestre ]
+    branches: [ "mestre" ]
+  pull_request:
+    branches: [ "mestre" ]
+  workflow_dispatch:
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout do código
@@ -17,11 +17,11 @@ jobs:
       - name: Configurar Java 11
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
           java-version: '11'
+          distribution: 'temurin'
 
       - name: Permissão de execução para o Gradle Wrapper
         run: chmod +x gradlew
 
-      - name: Build e testes unitários
+      - name: Build e testes
         run: ./gradlew assembleDebug testDebugUnitTest
