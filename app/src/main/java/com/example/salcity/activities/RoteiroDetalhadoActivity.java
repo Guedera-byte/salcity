@@ -1,75 +1,45 @@
+package com.example.salcity.activities;
 
-        package com.example.salcity.activities;
-
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 import android.widget.Button;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.salcity.R;
+import com.example.salcity.model.ChavesApp;
+import com.example.salcity.model.CoordenadasSalvador;
+import com.example.salcity.model.DimensoesRoteiro;
+import com.example.salcity.model.ParadaRoteiro;
+import com.example.salcity.model.RoteiroEssencialDados;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-/**
- * SALCITY — RoteiroDetalhadoActivity (somente front-end).
- * Exibe o roteiro demonstrativo Salvador Essencial com três abas,
- * favoritos e botão de adição simulados localmente.
- * Não utiliza banco de dados, back-end nem geração automática de roteiros.
- */
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+
 public class RoteiroDetalhadoActivity extends AppCompatActivity implements OnMapReadyCallback {
-
-    private static final int AZUL = Color.rgb(7, 51, 110);
-    private static final int AZUL_DESTAQUE = Color.rgb(0, 119, 245);
-    private static final String PREFS = "salcity_roteiros_ui";
-    private static final String CHAVE_FAVORITO = "favorito_salvador_essencial";
-
-
-    // Conteúdo ilustrativo do protótipo, NÃO proveniente de um serviço de rotas.
-    private static final String[] HORARIOS = {"08:00", "09:30", "11:30", "13:00", "15:00", "17:00"};
-    private static final String[] NOMES = {
-            "Elevador Lacerda", "Mercado Modelo", "Pelourinho", "Almoço",
-            "Igreja do Bonfim", "Pôr do sol no Farol da Barra"
-    };
-    private static final String[] DESCRICOES = {
-            "Vista panorâmica da cidade", "Artesanato e cultura local",
-            "Centro histórico e cultural", "Restaurante recomendado",
-            "Patrimônio histórico", "Encerramento do roteiro"
-    };
-    private static final int[] FOTOS = {
-            R.drawable.roteiro_elevador, R.drawable.roteiro_mercado,
-            R.drawable.roteiro_pelourinho, R.drawable.roteiro_almoco,
-            R.drawable.roteiro_bonfim, R.drawable.roteiro_farol
-    };
-    // Coordenadas aproximadas para demonstração visual do mapa.
-    private static final LatLng[] PONTOS = {
-            new LatLng(-12.9741, -38.5137),
-            new LatLng(-12.9718, -38.5147),
-            new LatLng(-12.9730, -38.5090),
-            new LatLng(-12.9730, -38.5090), // Almoço: posição ilustrativa.
-            new LatLng(-12.9237, -38.5087),
-            new LatLng(-13.0106, -38.5325)
-    };
 
     private LinearLayout conteudoRoteiro;
     private FrameLayout conteudoMapa;
@@ -78,303 +48,230 @@ public class RoteiroDetalhadoActivity extends AppCompatActivity implements OnMap
     private Button btnAdicionar;
     private Button btnSalvar;
 
-    // Mesmo armazenamento da CriarNovoRoteiroActivity e MeusRoteirosActivity.
-    private static final String PREFS_ROTEIROS = "salcity_roteiros_criados_demo";
-    private static final String CHAVE_LISTA = "roteiros_json";
-    private static final String ID_ESSENCIAL = "sugerido_salvador_essencial";
     private SharedPreferences preferencias;
     private boolean mapaCriado = false;
-
-    /*
-     * =====================================================
-     * MÉTODO: onCreate()
-     * =====================================================
-     *
-     * OBJETIVO:
-     * Inicializar a tela de detalhes do roteiro.
-     *
-     * RESPONSABILIDADES:
-     * 1. Carregar o layout XML.
-     * 2. Inicializar o SharedPreferences.
-     * 3. Associar os componentes.
-     * 4. Configurar os botões.
-     * 5. Construir a linha do tempo.
-     * 6. Configurar a descrição.
-     * 7. Selecionar a aba inicial.
-     * 8. Atualizar o botão favorito.
-     */
+    private List<ParadaRoteiro> paradas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
-        // Carrega o layout da tela.
         setContentView(R.layout.activity_roteiro_detalhado);
 
-        // Inicializa as preferências locais.
-        preferencias = getSharedPreferences(
-                PREFS,
-                MODE_PRIVATE
-        );
+        preferencias = getSharedPreferences(ChavesApp.PREFS_UI, MODE_PRIVATE);
+        paradas = RoteiroEssencialDados.getParadas(this);
 
-        // Associa os componentes do XML.
         associarComponentes();
-
-        // Configura os eventos dos botões.
         configurarBotoes();
-
-        // Constrói a linha do tempo.
         construirLinhaDoTempo();
-
-        // Configura o conteúdo da aba Detalhes.
         configurarDescricao();
-
-        // Exibe inicialmente a aba Roteiro.
         selecionarAba(0);
-
-        // Atualiza a aparência do favorito.
         atualizarFavorito();
         atualizarBotaoSalvar();
     }
 
-    /** Obtém as referências dos elementos definidos no layout XML. */
     private void associarComponentes() {
         conteudoRoteiro = findViewById(R.id.conteudoRoteiro);
-        conteudoMapa = findViewById(R.id.conteudoMapa);
+        conteudoMapa    = findViewById(R.id.conteudoMapa);
         conteudoDetalhes = findViewById(R.id.conteudoDetalhes);
-        abaRoteiro = findViewById(R.id.abaRoteiro);
-        abaMapa = findViewById(R.id.abaMapa);
+        abaRoteiro  = findViewById(R.id.abaRoteiro);
+        abaMapa     = findViewById(R.id.abaMapa);
         abaDetalhes = findViewById(R.id.abaDetalhes);
         btnFavorito = findViewById(R.id.btnFavoritoDetalhe);
         btnAdicionar = findViewById(R.id.btnAdicionarRoteiro);
-        btnSalvar = findViewById(R.id.btnSalvarRoteiro);
+        btnSalvar    = findViewById(R.id.btnSalvarRoteiro);
     }
 
-    /** Liga os controles visuais a ações de front-end. */
     private void configurarBotoes() {
         findViewById(R.id.btnVoltarDetalhe).setOnClickListener(v -> finish());
         findViewById(R.id.btnNotificacaoDetalhe).setOnClickListener(v ->
-                Toast.makeText(this, "Notificações disponíveis em uma etapa futura", Toast.LENGTH_SHORT).show());
-        abaRoteiro.setOnClickListener(v -> selecionarAba(0));
-        abaMapa.setOnClickListener(v -> selecionarAba(1));
+                Toast.makeText(this, R.string.roteiro_notificacoes_futuras, Toast.LENGTH_SHORT).show());
+
+        abaRoteiro.setOnClickListener(v  -> selecionarAba(0));
+        abaMapa.setOnClickListener(v     -> selecionarAba(1));
         abaDetalhes.setOnClickListener(v -> selecionarAba(2));
+
         btnFavorito.setOnClickListener(v -> {
-            boolean atual = preferencias.getBoolean(CHAVE_FAVORITO, false);
-            preferencias.edit().putBoolean(CHAVE_FAVORITO, !atual).apply();
+            boolean atual = preferencias.getBoolean(ChavesApp.CHAVE_FAVORITO, false);
+            preferencias.edit().putBoolean(ChavesApp.CHAVE_FAVORITO, !atual).apply();
             atualizarFavorito();
         });
-        /*
-         * =====================================================
-         * BOTÃO: ADICIONAR AO MEU ROTEIRO
-         * =====================================================
-         *
-         * OBJETIVO:
-         * Abrir a tela AdicionarRoteiroActivity.
-         *
-         * FUNCIONAMENTO:
-         * 1. Identifica o clique do usuário.
-         * 2. Cria uma Intent para a próxima Activity.
-         * 3. Envia informações do roteiro selecionado.
-         * 4. Abre a tela de adição de locais.
-         *
-         * OBSERVAÇÃO:
-         * Esta funcionalidade pertence ao front-end.
-         * Não realiza operações no banco de dados.
-         */
 
         btnSalvar.setOnClickListener(v -> salvarRoteiro());
 
         btnAdicionar.setOnClickListener(v -> {
-
-            // Cria a Intent para abrir a próxima tela.
-            Intent intent = new Intent(
-                    RoteiroDetalhadoActivity.this,
-                    AdicionarRoteiroActivity.class
-            );
-
-            // Envia o identificador do roteiro.
-            intent.putExtra(
-                    "codigo_roteiro",
-                    "essencial"
-            );
-
-            // Envia o nome do roteiro.
-            intent.putExtra(
-                    "titulo_roteiro",
-                    "Salvador Essencial"
-            );
-
-            // Inicia a tela Adicionar ao Roteiro.
+            Intent intent = new Intent(this, AdicionarRoteiroActivity.class);
+            intent.putExtra("codigo_roteiro", "essencial");
+            intent.putExtra("titulo_roteiro", getString(R.string.roteiro_essencial_titulo));
             startActivity(intent);
         });
     }
 
-    /** Atualiza o botão sempre que a tela volta a ficar visível (inclusive após exclusões). */
     @Override
     protected void onResume() {
         super.onResume();
         if (btnSalvar != null) atualizarBotaoSalvar();
     }
 
-    /** Recupera a lista compartilhada com Meus Roteiros, sem sobrescrever registros. */
     private JSONArray lerRoteirosSalvos() throws JSONException {
-        String dados = getSharedPreferences(PREFS_ROTEIROS, MODE_PRIVATE)
-                .getString(CHAVE_LISTA, "[]");
+        String dados = getSharedPreferences(ChavesApp.PREFS_ROTEIROS, MODE_PRIVATE)
+                .getString(ChavesApp.CHAVE_LISTA, "[]");
         return new JSONArray(dados);
     }
 
-    /** Identifica apenas este roteiro sugerido pelo ID fixo, sem confundir nomes iguais. */
     private boolean roteiroJaSalvo(JSONArray lista) {
         for (int i = 0; i < lista.length(); i++) {
             JSONObject item = lista.optJSONObject(i);
-            if (item != null && ID_ESSENCIAL.equals(item.optString("id"))) return true;
+            if (item != null && ChavesApp.ID_ESSENCIAL.equals(item.optString("id"))) return true;
         }
         return false;
     }
 
-    /** Atualiza a aparência de acordo com os dados realmente persistidos. */
     private void atualizarBotaoSalvar() {
         try {
             boolean salvo = roteiroJaSalvo(lerRoteirosSalvos());
-            btnSalvar.setText(salvo ? "Roteiro salvo ✓" : "Salvar roteiro");
+            btnSalvar.setText(salvo ? R.string.roteiro_salvo : R.string.roteiro_salvar);
             btnSalvar.setEnabled(!salvo);
-            btnSalvar.setAlpha(salvo ? 0.72f : 1f);
+            btnSalvar.setAlpha(salvo
+                    ? DimensoesRoteiro.ALPHA_DESABILITADO
+                    : DimensoesRoteiro.ALPHA_ATIVO);
         } catch (JSONException erro) {
-            btnSalvar.setText("Salvar roteiro");
+            btnSalvar.setText(R.string.roteiro_salvar);
             btnSalvar.setEnabled(true);
         }
     }
 
-    /**
-     * Salva o roteiro demonstrativo no mesmo JSON utilizado por Meus Roteiros.
-     * Não substitui a lista existente, não chama o back-end e impede duplicação por ID.
-     */
     private void salvarRoteiro() {
         try {
             JSONArray lista = lerRoteirosSalvos();
             if (roteiroJaSalvo(lista)) {
                 atualizarBotaoSalvar();
-                Toast.makeText(this, "Este roteiro já está salvo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.roteiro_ja_salvo, Toast.LENGTH_SHORT).show();
                 return;
             }
 
             JSONObject roteiro = new JSONObject();
-            roteiro.put("id", ID_ESSENCIAL);
+            roteiro.put("id", ChavesApp.ID_ESSENCIAL);
             roteiro.put("origem", "sugerido");
-            roteiro.put("nome", "Salvador Essencial");
+            roteiro.put("nome", getString(R.string.roteiro_essencial_titulo));
             roteiro.put("inicio", "");
             roteiro.put("fim", "");
             roteiro.put("orcamento", 0);
-            roteiro.put("descricao", "Roteiro demonstrativo de 1 dia, com 6 paradas " +
-                    "e duração aproximada de 8 horas. Horários e trajetos ilustrativos.");
+            roteiro.put("descricao", getString(R.string.roteiro_essencial_descricao_completa));
 
             JSONArray tags = new JSONArray();
             tags.put("Cultura");
             tags.put("História");
             roteiro.put("tags", tags);
 
-            // Preserva a ordem e os dados dos roteiros que já foram criados.
             lista.put(roteiro);
-            boolean gravou = getSharedPreferences(PREFS_ROTEIROS, MODE_PRIVATE)
-                    .edit().putString(CHAVE_LISTA, lista.toString()).commit();
+            boolean gravou = getSharedPreferences(ChavesApp.PREFS_ROTEIROS, MODE_PRIVATE)
+                    .edit().putString(ChavesApp.CHAVE_LISTA, lista.toString()).commit();
+
             if (gravou) {
                 atualizarBotaoSalvar();
-                Toast.makeText(this, "Roteiro salvo com sucesso!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.roteiro_salvo_sucesso, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Não foi possível salvar o roteiro", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, R.string.roteiro_erro_salvar, Toast.LENGTH_LONG).show();
             }
         } catch (JSONException erro) {
-            Toast.makeText(this, "Erro ao ler ou salvar os roteiros locais", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.roteiro_erro_ler, Toast.LENGTH_LONG).show();
         }
     }
 
-    /** Atualiza o coração usando a preferência local (sem sincronização). */
     private void atualizarFavorito() {
-        boolean favorito = preferencias.getBoolean(CHAVE_FAVORITO, false);
-        btnFavorito.setImageTintList(ColorStateList.valueOf(favorito ? Color.RED : AZUL));
-        btnFavorito.setContentDescription(favorito ? "Remover dos favoritos" : "Adicionar aos favoritos");
+        boolean favorito = preferencias.getBoolean(ChavesApp.CHAVE_FAVORITO, false);
+        int cor = ContextCompat.getColor(this,
+                favorito ? R.color.favorito_vermelho : R.color.azul_salcity);
+        btnFavorito.setImageTintList(ColorStateList.valueOf(cor));
+        btnFavorito.setContentDescription(getString(favorito
+                ? R.string.roteiro_remover_favorito
+                : R.string.roteiro_adicionar_favorito));
     }
 
-    /** Alterna entre a linha do tempo, o mapa e o texto de detalhes. */
     private void selecionarAba(int indice) {
         conteudoRoteiro.setVisibility(indice == 0 ? View.VISIBLE : View.GONE);
         conteudoMapa.setVisibility(indice == 1 ? View.VISIBLE : View.GONE);
         conteudoDetalhes.setVisibility(indice == 2 ? View.VISIBLE : View.GONE);
+
+        int corAzul     = ContextCompat.getColor(this, R.color.azul_salcity);
+        int corDestaque = ContextCompat.getColor(this, R.color.azul_destaque_salcity);
+
         TextView[] abas = {abaRoteiro, abaMapa, abaDetalhes};
         for (int i = 0; i < abas.length; i++) {
-            abas[i].setTextColor(i == indice ? AZUL_DESTAQUE : AZUL);
-            abas[i].setTypeface(null, i == indice ? Typeface.BOLD : Typeface.NORMAL);
-            abas[i].setPaintFlags(i == indice
-                    ? (abas[i].getPaintFlags() | android.graphics.Paint.UNDERLINE_TEXT_FLAG)
-                    : (abas[i].getPaintFlags() & ~android.graphics.Paint.UNDERLINE_TEXT_FLAG));
-            abas[i].setSelected(i == indice);
+            boolean ativa = (i == indice);
+            abas[i].setTextColor(ativa ? corDestaque : corAzul);
+            abas[i].setTypeface(null, ativa ? Typeface.BOLD : Typeface.NORMAL);
+            abas[i].setPaintFlags(ativa
+                    ? (abas[i].getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG)
+                    : (abas[i].getPaintFlags() & ~Paint.UNDERLINE_TEXT_FLAG));
+            abas[i].setSelected(ativa);
         }
         if (indice == 1 && !mapaCriado) inicializarMapa();
     }
 
-    /** Cria as seis paradas de forma responsiva, sem depender de RecyclerView. */
     private void construirLinhaDoTempo() {
         conteudoRoteiro.removeAllViews();
-        for (int i = 0; i < NOMES.length; i++) {
+        int corAzul        = ContextCompat.getColor(this, R.color.azul_salcity);
+        int corTextoSecund = ContextCompat.getColor(this, R.color.texto_secundario_salcity);
+
+        for (ParadaRoteiro parada : paradas) {
             LinearLayout linha = new LinearLayout(this);
             linha.setGravity(Gravity.CENTER_VERTICAL);
             linha.setOrientation(LinearLayout.HORIZONTAL);
-            linha.setPadding(0, dp(7), 0, dp(7));
-            linha.setMinimumHeight(dp(100));
+            linha.setPadding(0,
+                    dp(DimensoesRoteiro.PADDING_LINHA_DP),
+                    0,
+                    dp(DimensoesRoteiro.PADDING_LINHA_DP));
+            linha.setMinimumHeight(dp(DimensoesRoteiro.ALTURA_MINIMA_LINHA_DP));
 
-            // Coluna de horário (à esquerda).
             TextView horario = new TextView(this);
-            horario.setText("○  " + HORARIOS[i]);
-            horario.setTextSize(15);
-            horario.setTextColor(AZUL);
+            horario.setText(getString(R.string.roteiro_horario_formatado, parada.getHorario()));
+            horario.setTextSize(DimensoesRoteiro.TEXTO_HORARIO_SP);
+            horario.setTextColor(corAzul);
             horario.setTypeface(null, Typeface.BOLD);
-            linha.addView(horario, new LinearLayout.LayoutParams(dp(93), -2));
+            linha.addView(horario, new LinearLayout.LayoutParams(
+                    dp(DimensoesRoteiro.LARGURA_HORARIO_DP),
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
 
-            // Miniatura própria de cada ponto turístico.
             ImageView imagem = new ImageView(this);
-            imagem.setImageResource(FOTOS[i]);
+            imagem.setImageResource(parada.getFotoResId());
             imagem.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imagem.setBackgroundResource(R.drawable.bg_detalhe_thumb);
             imagem.setClipToOutline(true);
-            imagem.setContentDescription("Fotografia de " + NOMES[i]);
-            linha.addView(imagem, new LinearLayout.LayoutParams(dp(68), dp(76)));
+            imagem.setContentDescription(getString(
+                    R.string.roteiro_foto_descricao, parada.getNome()));
+            linha.addView(imagem, new LinearLayout.LayoutParams(
+                    dp(DimensoesRoteiro.LARGURA_IMAGEM_DP),
+                    dp(DimensoesRoteiro.ALTURA_IMAGEM_DP)));
 
-            // Nome e descrição do local, com quebra de linha automática.
             LinearLayout textos = new LinearLayout(this);
             textos.setOrientation(LinearLayout.VERTICAL);
-            textos.setPadding(dp(12), 0, 0, 0);
+            textos.setPadding(dp(DimensoesRoteiro.PADDING_TEXTO_DP), 0, 0, 0);
+
             TextView nome = new TextView(this);
-            nome.setText(NOMES[i]);
-            nome.setTextColor(AZUL);
+            nome.setText(parada.getNome());
+            nome.setTextColor(corAzul);
             nome.setTypeface(null, Typeface.BOLD);
-            nome.setTextSize(17);
+            nome.setTextSize(DimensoesRoteiro.TEXTO_NOME_SP);
+
             TextView descricao = new TextView(this);
-            descricao.setText(DESCRICOES[i]);
-            descricao.setTextColor(Color.rgb(69, 99, 128));
-            descricao.setTextSize(14);
+            descricao.setText(parada.getDescricao());
+            descricao.setTextColor(corTextoSecund);
+            descricao.setTextSize(DimensoesRoteiro.TEXTO_DESCRICAO_SP);
+
             textos.addView(nome);
             textos.addView(descricao);
-            linha.addView(textos, new LinearLayout.LayoutParams(0, -2, 1f));
+            linha.addView(textos, new LinearLayout.LayoutParams(
+                    0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
+
             conteudoRoteiro.addView(linha);
         }
     }
 
-    /** Texto estático da aba Detalhes. Informações exemplificativas do protótipo. */
     private void configurarDescricao() {
-        conteudoDetalhes.setText(
-                "Salvador Essencial\n\n" +
-                        "Um passeio demonstrativo por alguns dos lugares mais conhecidos de Salvador. " +
-                        "A proposta combina história, cultura e gastronomia.\n\n" +
-                        "Duração: 1 dia\n" +
-                        "Paradas apresentadas: 6\n" +
-                        "Tempo estimado: aproximadamente 8 horas\n\n" +
-                        "Observação: horários, trajetos e locais de alimentação são exemplos do protótipo. " +
-                        "O cálculo real de deslocamento e a personalização serão realizados futuramente pelo back-end."
-        );
+        conteudoDetalhes.setText(R.string.roteiro_essencial_descricao_completa);
     }
 
-    /** Adiciona o fragment do Google Maps apenas quando a aba Mapa é aberta. */
     private void inicializarMapa() {
         mapaCriado = true;
         SupportMapFragment fragment = SupportMapFragment.newInstance();
@@ -384,19 +281,21 @@ public class RoteiroDetalhadoActivity extends AppCompatActivity implements OnMap
         fragment.getMapAsync(this);
     }
 
-    /** Exibe marcadores demonstrativos, sem traçar rotas nem consultar APIs extras. */
     @Override
     public void onMapReady(@NonNull GoogleMap mapa) {
-        for (int i = 0; i < PONTOS.length; i++) {
-            mapa.addMarker(new MarkerOptions().position(PONTOS[i]).title(HORARIOS[i] + " — " + NOMES[i]));
+        for (ParadaRoteiro parada : paradas) {
+            mapa.addMarker(new MarkerOptions()
+                    .position(parada.getCoordenadas())
+                    .title(getString(R.string.roteiro_marcador_formatado,
+                            parada.getHorario(), parada.getNome())));
         }
-        mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(-12.968, -38.512), 11.5f));
+        mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                CoordenadasSalvador.centroDoMapa(),
+                CoordenadasSalvador.ZOOM_INICIAL));
         mapa.getUiSettings().setZoomControlsEnabled(true);
     }
 
-    /** Converte unidades dp para pixels do aparelho. */
     private int dp(float valor) {
         return Math.round(valor * getResources().getDisplayMetrics().density);
     }
 }
-
